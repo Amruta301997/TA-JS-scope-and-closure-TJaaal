@@ -6,20 +6,20 @@ Create a execution context diagram of the following code on your notebook. Take 
 
 ```js
 var species = 'human';
-
+ 
 function change() {
   var species = 'vampire';
   console.log(species);
 }
 
-console.log(species); // 1
-change();
-console.log(species); // 2
+console.log(species); // human
+change();//vampire
+console.log(species); // human
 ```
 
 <!-- Put your image below -->
 
-![](./img/image-name.jpg)
+![](./img/img1.jpeg)
 
 - Create the execution context diagram
 - What will be the value of species on 1 and 2
@@ -35,8 +35,8 @@ function topLevelFn() {
   function nestedFn() {
     var anotherLocalVar = "Local to nestedFn's scope.";
 
-    console.log(localVar); // 1
-    console.log(topLevelVar); // 2
+    console.log(localVar); // This is local to topLevelFn's scope
+    console.log(topLevelVar); //This is global scope! 
   }
 
   nestedFn();
@@ -47,7 +47,7 @@ topLevelFn();
 
 <!-- Put your image below -->
 
-![](./img/image-name.jpg)
+![](./img/img2.jpeg)
 
 - Create the execution context diagram
 - What will be the value of 1 and 2
@@ -64,21 +64,21 @@ function main() {
   function inner() {
     var four = 'Four';
 
-    console.log(one); // 1
-    console.log(two); // 2
-    console.log(three); // 3
+    console.log(one); // Uncaught ReferenceError: one is not defined
+    console.log(two); // Uncaught ReferenceError: two is not defined
+    console.log(three); // Uncaught ReferenceError: three is not defined
   }
-  console.log(four); // 4
+  console.log(four); // Uncaught ReferenceError: four is not defined
   inner();
 }
 
 main();
-console.log(one, two, three, four); // 5
+console.log(one, two, three, four); // One Two Three
 ```
 
 <!-- Put your image below -->
 
-![](./img/image-name.jpg)
+![](./img/img3.jpeg)
 
 - Create the execution context diagram
 - What will be the value of 1, 2, 3, 4 and 5 or error if the code does not work
