@@ -12,6 +12,12 @@ forEach(['Sam', 'Jon', 'Arya'], (name, i, arr) =>
 );
 ```
 
+```js
+var total = [1, 2, 3].reduce(function (sum, current) {
+  return sum + current;
+}, 0);
+```
+
 2. Implement `map` array method using Array.reduce
 
 - `map` accepts two parameter array and callback
@@ -19,10 +25,13 @@ forEach(['Sam', 'Jon', 'Arya'], (name, i, arr) =>
 - It should work exactly like array `map` method
 
 ```js
-function map() {
-  // Your code goes here
-}
 
+var names=['Sam', 'Jon', 'Arya'].map(function (arr,cb) {
+  return arr.name;
+});
+```
+
+```js
 map(['Sam', 'Jon', 'Arya'], (name) => name + name); // ['SamSam', 'JonJon', 'AryaArya']
 ```
 
@@ -39,4 +48,33 @@ function filter() {
 filter(['Sam', 'Jon', 'Arya'], (name) =>
   name.startsWith('S')
 ); // ['Sam']
+```
+```js
+var wizards = [
+  {
+    name: 'Harry Potter',
+    house: 'Gryfindor'
+  },
+  {
+    name: 'Cedric Diggory',
+    house: 'Hufflepuff'
+  },
+  {
+    name: 'Tonks',
+    house: 'Hufflepuff'
+  },
+  {
+    name: 'Ronald Weasley',
+    house: 'Gryfindor'
+  },
+  {
+    name: 'Hermione Granger',
+    house: 'Gryfindor'
+  }
+];
+
+var hufflepuff = wizards.filter(function (wizard) {
+  return wizard.house === 'Hufflepuff';
+})
+
 ```
