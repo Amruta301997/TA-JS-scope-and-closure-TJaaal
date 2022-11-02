@@ -10,8 +10,11 @@
 **You can use normal for loop for this function**
 
 ```js
-function loop() {
+function loop(start,test,update,body) {
   // Your code goes here
+  for(let value=start;test(value); value=update(value)){
+    body(value);
+  }
 }
 
 loop(
@@ -30,7 +33,21 @@ loop(
 Here's how it works. The function has an "accumulator value" which starts as the `initialValue` and accumulates the output of each loop. The array is iterated over, passing the accumulator and the next array element as arguments to the `callback`. The callback's return value becomes the new accumulator value. The next loop executes with this new accumulator value. In the example above, the accumulator begins at 0. `add(0,4)` is called. The accumulator's value is now 4. Then `add(4, 1)` to make it 5. Finally `add(5, 3)` brings it to 8, which is returned.
 
 ```js
-function reduce(array, callback, initialValue) {}
+function reduce(array, callback, initialValue) {
+let accum;
+  if (Object.keys(arguments).length > 2) {
+    accum = initialValue;
+  } else {
+    // InitialValue not provided
+    accum = array[0];
+    array.shift();
+  }
+
+  forEach(array, (item) => {
+    accum = callback(accum, item);
+  });
+  return accum;
+}
 
 // Test
 var nums = [4, 1, 3];
@@ -43,7 +60,22 @@ reduce(nums, add, 0); //-> 8
 3. Construct a function intersection that compares input arrays and returns a new array with elements found in all of the inputs.
 
 ```js
-function intersection(arrays) {}
+function intersection(arrays) {
+    array = [];
+  for (var i = 0; i < arguments.length; i++)
+    array.push(arguments[i]);
+
+  var result = [];
+
+  for(var i = 0; i < array.length - 1; i++) {
+    for(var j = 0; j < array[i].length; j++) {
+      if (array[i+1].includes(array[i][j]))
+        result.push(array[i][j]);
+    }
+  }
+
+  return result;
+}
 
 // Test
 console.log(
@@ -58,7 +90,9 @@ console.log(
 4. Construct a function `union` that compares input arrays and returns a new array that contains all elements. If there are duplicate elements, only add it once to the new array. Preserve the order of the elements starting from the first element of the first input array.
 
 ```js
-function union(arrays) {}
+function union(arrays) {
+  arrays = arrays.filter(val => !arrays.includes(val));
+}
 
 // Test
 console.log(
