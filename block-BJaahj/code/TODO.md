@@ -3,7 +3,20 @@
 1. Construct a function `objOfMatches` that accepts two arrays and a callback. `objOfMatches` will build an object and return it. To build the object, `objOfMatches` will test each element of the first array using the callback to see if the output matches the corresponding element (by index) of the second array. If there is a match, the element from the first array becomes a key in an object, and the element from the second array becomes the corresponding value.
 
 ```js
-function objOfMatches(array1, array2, callback) {}
+function objOfMatches(array1, array2, callback) {
+    var obj = {}
+
+  for(let i = 0; i < array1.length; i++) {
+   for (let j = 0; j < array2.length; j++) {
+            if (callback(array1[i]) === array2[j]) {   
+                if(!array1[j] in obj) obj[array1[j]]  = [] 
+                obj[array1[j]] = array2[i];
+            }
+        }
+    }
+    return obj;
+}
+
 
 // TEST
 console.log(
@@ -20,7 +33,19 @@ console.log(
 2. Construct a function `multiMap` that will accept two arrays: an array of values and an array of callbacks. `multiMap` will return an object whose keys match the elements in the array of values. The corresponding values that are assigned to the keys will be arrays consisting of outputs from the array of callbacks, where the input to each callback is the key.
 
 ```js
-function multiMap(arrVals, arrCallbacks) {}
+function multiMap(arrVals, arrCallbacks) {
+  let newObj = {}; 
+
+  for (let i=0; i<arrOne.length; i++){
+    let element = arrOne[i];
+    newObj[element] = [];
+    for(let j=0;j < arrTwo.length; j++) {
+     
+    newObj[element].push(arrTwo[j](element)); 
+    }
+  }
+  return newObj; 
+}
 
 // TEST
 console.log(
@@ -50,7 +75,12 @@ To build the object, `objOfMatchesWithArray` will test each element of the first
 The final output from the third array will be matched agains the same indexed element of second array. If there is a match, the element from the first array becomes a key in an object, and the element from the second array becomes the corresponding value.
 
 ```js
-function objOfMatchesWithArray(array1, array2, callback) {}
+function objOfMatchesWithArray(arr1, arr2, callback) {
+   return arr1.reduce((obj, current, index) => {
+    if(arr2[index] === callback(current)) obj[current] = arr2[index]
+    return obj
+  }, {})
+}
 
 // TEST
 console.log(
@@ -123,7 +153,11 @@ Create a function named `schedule` which accept two arguments an array of functi
 The function `schedule` will execute the function at first index after the value in value on first index in second array. i.e execute `sayHi` after `1` second and `sayHello` after `2` second.
 
 ```js
-function schedule() {}
+function schedule(array1,array2) {
+  if(array1.length != array2.length){
+    alert(`invalid input`);
+  }
+}
 
 function sayHi() {
   console.log('Hi');
