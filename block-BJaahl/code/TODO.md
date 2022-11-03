@@ -3,7 +3,21 @@
 ```js
 function once(cb) {
   // your code goes here
+ let result = func
+ let counter = 0
+ 
+ function inner (n) {
+   counter++
+   if (counter = 1) {
+     return func
+    }
+   if (counter > 1) {
+     return result
+   }
+ }
+ return inner
 }
+
 
 // TEST
 function sayHello() {
@@ -17,9 +31,19 @@ log(); // return undefinde (can't be called twice)
 2. Change the above function in such a way that the function accepts two parameter a callback function and parameter for the callback function. When calling the function pass the parameters.
 
 ```js
-function once(cb) {
+
   // your code goes here
+  function once(fn, context) { 
+    var result;
+    return function() { 
+        if (fn) {
+            result = fn.apply(context || this, arguments);
+            fn = null;
+        }
+        return result;
+    };
 }
+
 
 // TEST
 let log = once(console.log, 'Hello Console');
@@ -34,8 +58,13 @@ log(); // return undefinde (can't be called twice)
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters
 
 ```js
-function once(cb) {
+function once(...theArgs) {
   // your code goes here
+  let msg = 0;
+  for (const arg of theArgs) {
+    msg += arg;
+  }
+  return total;
 }
 
 // TEST
