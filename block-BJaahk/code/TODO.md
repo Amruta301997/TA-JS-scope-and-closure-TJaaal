@@ -6,8 +6,34 @@ The returned function accepts a sentence. If the sentence contains the `fromWord
 
 ```js
 function censor(fromWord, toWord) {
+
   //  Your code goes here
-}
+      var word_list = text.split(" ");
+ 
+        // A new string to store the result
+        var result = "";
+ 
+       
+        var stars = "";
+        for (var i = 0; i < word.length; i++) stars += "*";
+ 
+      
+        var index = 0;
+        for (const i of word_list) {
+          if (i === word)
+           
+            word_list[index] = stars;
+          index++;
+        }
+ 
+        // join the words
+        for (const i of word_list) {
+          result += i + " ";
+        }
+ 
+        return result;
+      }
+
 
 let censorSentence = censor('World', 'Sam');
 censorSentence('Hello World'); // Hello Sam
@@ -24,9 +50,34 @@ The returned function either accepts two parameter or one parameter.
 - When you pass one parameter it should return a string with words replaced with the required words.
 
 ```js
-function multipleCensor() {
-  //  Your code goes here
-}
+function multipleCensor(fromWord, toWord) {
+   //  Your code goes here
+      var word_list = text.split(" ");
+ 
+        // A new string to store the result
+        var result = "";
+ 
+       
+        var stars = "";
+        for (var i = 0; i < word.length; i++) stars += "*";
+ 
+      
+        var index = 0;
+        for (const i of word_list) {
+          if (i === word)
+           
+            word_list[index] = stars;
+          index++;
+        }
+ 
+        // join the words
+        for (const i of word_list) {
+          result += i + " ";
+        }
+ 
+        return result;
+      }
+
 
 let censorQuote = multipleCensor();
 censorQuote('forget', 'remember'); // two parameter no return
@@ -49,8 +100,9 @@ The returned function accepts one parameter.
 - If the parameter is the same as the password it will return the object in which we stored the values.
 
 ```js
-function createCache() {
+function createCache(cb,str) {
   // Your code goes here
+  var str= cb +10
 }
 
 function add10(num) {
